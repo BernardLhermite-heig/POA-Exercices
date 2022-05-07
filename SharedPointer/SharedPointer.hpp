@@ -1,12 +1,11 @@
-/**
- * @author Marengo Stéphane
- */
-
 #ifndef SHARED_PTR_SHAREDPOINTER_HPP
 #define SHARED_PTR_SHAREDPOINTER_HPP
 
 #include <cstdlib>
 
+/**
+ * @author Marengo Stéphane
+ */
 template<typename T>
 class SharedPointer {
 public:
