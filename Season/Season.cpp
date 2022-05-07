@@ -1,6 +1,5 @@
 /**
- * Description
- * @author Oim
+ * @author Marengo Stéphane
  */
 
 #include "Season.hpp"
@@ -8,13 +7,14 @@
 #include <cstring>
 #include <stdexcept>
 
+using namespace std;
 
 const Season Season::Spring("Spring");
 const Season Season::Summer("Summer");
 const Season Season::Autumn("Autumn");
 const Season Season::Winter("Winter");
 
-std::size_t Season::counter = 0;
+size_t Season::counter = 0;
 
 const Season* Season::seasons[]{
    &Spring,
@@ -23,13 +23,13 @@ const Season* Season::seasons[]{
    &Winter
 };
 
-std::size_t Season::size() {
+size_t Season::size() {
    return counter;
 }
 
-const Season& Season::get(std::size_t i) {
+const Season& Season::get(size_t i) {
    if (i >= size())
-      throw std::runtime_error("");
+      throw out_of_range("Hors borne");
    return *seasons[i];
 }
 
@@ -38,25 +38,24 @@ const Season** Season::values() {
 }
 
 const Season& Season::next() const {
-   return *seasons[(ordinal + 1) % size()];
+   return *seasons[(ordinal + 1) % counter];
 }
 
-Season::Season(const char* str) {
+Season::Season(const char* str) : ordinal(counter++) {
    const size_t len = strlen(str);
    char* tmp = new char[len + 1];
    strcpy(tmp, str);
-   text = tmp;
-   ordinal = counter++;
+   _name = tmp;
 }
 
 Season::~Season() {
-   delete[] text;
+   delete[] _name;
 }
 
-std::size_t Season::index() const {
+size_t Season::index() const {
    return ordinal;
 }
 
 const char* Season::name() const {
-   return text;
+   return _name;
 }

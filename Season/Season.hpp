@@ -3,18 +3,10 @@
 
 #include <string>
 
+/**
+ * @author Marengo Stéphane
+ */
 class Season {
-private:
-   static const Season* seasons[];
-   static std::size_t counter;
-
-   const char* text;
-   std::size_t ordinal;
-
-   Season(const char* str);
-
-   ~Season();
-
 public:
    static const Season Spring, Summer, Autumn, Winter;
 
@@ -29,6 +21,16 @@ public:
    std::size_t index() const;
 
    const char* name() const;
+
+private:
+   static const Season* seasons[];
+   static std::size_t counter;
+   const char* _name;
+   std::size_t ordinal;
+
+   explicit Season(const char* str);
+
+   ~Season();
 };
 
 
