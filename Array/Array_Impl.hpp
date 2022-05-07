@@ -1,5 +1,6 @@
-
-#include "Array.hpp"
+/**
+ * @author Marengo Stéphane
+ */
 
 template<typename T>
 Array<T>::Array() {

@@ -1,6 +1,5 @@
 /**
- * Description
- * @author Oim
+ * @author Marengo Stéphane
  */
 
 #include "Band.hpp"

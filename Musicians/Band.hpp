@@ -8,8 +8,7 @@
 class Musician;
 
 /**
- * Description
- * @author Oim
+ * @author Marengo Stéphane
  */
 class Band : public std::enable_shared_from_this<Band> {
 public:

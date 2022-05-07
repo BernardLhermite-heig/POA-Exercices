@@ -1,3 +1,7 @@
+/**
+ * @author Marengo Stéphane
+ */
+
 #include <iostream>
 #include "Season.hpp"
 

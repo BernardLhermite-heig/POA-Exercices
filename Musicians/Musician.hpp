@@ -8,8 +8,7 @@
 class Band;
 
 /**
- * Description
- * @author Oim
+ * @author Marengo Stéphane
  */
 class Musician {
 public:
