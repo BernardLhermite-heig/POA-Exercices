@@ -16,9 +16,15 @@ Band::Band(string name) : name(move(name)), members() {
 }
 
 void Band::setMembers(initializer_list<shared_ptr<Musician>> members) {
-   this->members = members;
+   for (auto it = this->members.begin(); it != this->members.end(); ++it) {
+      (*it)->removeBand();
+      it = this->members.erase(it);
+      --it;
+   }
+
    for (const auto& m: members) {
-      m->setBand(weak_from_this());
+      if (m->setBand(weak_from_this()))
+         this->members.push_back(m);
    }
 }
 

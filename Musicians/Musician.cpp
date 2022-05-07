@@ -30,11 +30,18 @@ Musician::~Musician() {
    cout << "~Musician(): " << name << endl;
 }
 
-void Musician::setBand(const weak_ptr<Band>& band) {
-   if (this->band.expired()) {
+bool Musician::setBand(const weak_ptr<Band>& band) {
+   auto b = this->band.lock();
+
+   if (!b) {
       this->band = band;
-   } else {
-      auto b = this->band.lock();
-      cout << name << " is already in " << b->getName() << endl;
+      return true;
    }
+
+   cout << name << " is already in " << b->getName() << endl;
+   return false;
+}
+
+void Musician::removeBand() {
+   this->band.reset();
 }

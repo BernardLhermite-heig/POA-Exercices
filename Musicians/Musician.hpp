@@ -20,7 +20,9 @@ public:
 
    std::string getName() const;
 
-   void setBand(const std::weak_ptr<Band>& band);
+   bool setBand(const std::weak_ptr<Band>& band);
+
+   void removeBand();
 
 private:
    std::string name;
