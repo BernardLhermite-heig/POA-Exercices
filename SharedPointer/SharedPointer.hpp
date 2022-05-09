@@ -36,15 +36,17 @@ private:
    public:
       explicit Manager(T* ptr);
 
-      void addSharedPointer();
-
-      void removeSharedPointer();
+      ~Manager();
 
       std::size_t sharedPtrCounter;
       T* ptr;
    };
 
    Manager* manager;
+
+   void addSharedPointer();
+
+   void destroy();
 };
 
 #include "SharedPointer_Impl.hpp"

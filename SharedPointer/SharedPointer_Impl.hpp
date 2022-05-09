@@ -9,17 +9,24 @@ template<typename T>
 SharedPointer<T>::Manager::Manager(T* ptr) : sharedPtrCounter(1), ptr(ptr) {}
 
 template<typename T>
-void SharedPointer<T>::Manager::addSharedPointer() {
-   sharedPtrCounter++;
+SharedPointer<T>::Manager::~Manager() {
+   delete ptr;
 }
 
 template<typename T>
-void SharedPointer<T>::Manager::removeSharedPointer() {
-   sharedPtrCounter--;
+void SharedPointer<T>::addSharedPointer() {
+   if (manager == nullptr) return;
+   ++manager->sharedPtrCounter;
+}
 
-   if (!sharedPtrCounter) {
-      delete ptr;
-      delete this;
+template<typename T>
+void SharedPointer<T>::destroy() {
+   if (manager == nullptr) return;
+
+   --manager->sharedPtrCounter;
+
+   if (!manager->sharedPtrCounter) {
+      delete manager;
    }
 }
 
@@ -33,13 +40,13 @@ SharedPointer<T>::SharedPointer(T* ptr) : manager(new Manager(ptr)) {
 
 template<typename T>
 SharedPointer<T>::~SharedPointer() {
-   manager->removeSharedPointer();
+   destroy();
 }
 
 template<typename T>
 SharedPointer<T>::SharedPointer(const SharedPointer& sharedPtr) : manager(sharedPtr.manager) {
    if (manager != nullptr)
-      manager->addSharedPointer();
+      addSharedPointer();
 }
 
 template<typename T>
@@ -47,13 +54,10 @@ SharedPointer<T>& SharedPointer<T>::operator=(const SharedPointer& sharedPtr) {
    if (this == &sharedPtr)
       return *this;
 
-   if (manager != nullptr)
-      manager->removeSharedPointer();
+   destroy();
 
-   if (sharedPtr.manager != nullptr) {
-      manager = sharedPtr.manager;
-      manager->addSharedPointer();
-   }
+   manager = sharedPtr.manager;
+   addSharedPointer();
 
    return *this;
 }
@@ -81,7 +85,7 @@ bool SharedPointer<T>::operator!=(const SharedPointer& sharedPtr) const {
 template<typename T>
 T* SharedPointer<T>::get() const {
    if (manager == nullptr)
-      throw std::runtime_error("Bruh");
+      throw std::runtime_error("No value stored");
    return manager->ptr;
 }
 
