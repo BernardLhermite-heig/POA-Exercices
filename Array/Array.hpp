@@ -12,12 +12,8 @@ template<typename T>
 class Array {
 public:
    class Iterator {
-   private:
-      T* ptr;
    public:
-      explicit Iterator(T* data);
-
-      T& operator*();
+      T& operator*() const;
 
       Iterator& operator++();
 
@@ -26,6 +22,13 @@ public:
       bool operator!=(const Iterator& other);
 
       bool operator==(const Iterator& other);
+
+      T* operator->() const;
+
+   private:
+      T* ptr;
+
+      explicit Iterator(T* data);
    };
 
    Array();
@@ -58,7 +61,7 @@ private:
 
    void destroy();
 
-   T& at(std::size_t i);
+   T& at(std::size_t i) const;
 };
 
 #include "Array_Impl.hpp"

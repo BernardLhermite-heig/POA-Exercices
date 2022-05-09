@@ -1,3 +1,6 @@
+
+#include "Array.hpp"
+
 /**
  * @author Marengo Stéphane
  */
@@ -88,7 +91,7 @@ void Array<T>::destroy() {
 }
 
 template<typename T>
-T& Array<T>::at(std::size_t i) {
+T& Array<T>::at(std::size_t i) const {
    if (i >= length) {
       throw std::out_of_range("Index out of range");
    }
@@ -100,7 +103,7 @@ Array<T>::Iterator::Iterator(T* data) : ptr(data) {
 }
 
 template<typename T>
-T& Array<T>::Iterator::operator*() {
+T& Array<T>::Iterator::operator*() const {
    return *ptr;
 }
 
@@ -125,4 +128,9 @@ bool Array<T>::Iterator::operator!=(const Array::Iterator& other) {
 template<typename T>
 bool Array<T>::Iterator::operator==(const Array::Iterator& other) {
    return ptr == other.ptr;
+}
+
+template<typename T>
+T* Array<T>::Iterator::operator->() const {
+   return ptr;
 }

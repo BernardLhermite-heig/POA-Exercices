@@ -54,12 +54,5 @@ int main() {
    cout << array << endl
         << a3 << endl
         << a4 << endl;
-
-   std::cout << "Hello, World!" << std::endl;
-
-
-   shared_ptr<int> p2;
-   shared_ptr<int> p1(new int(1));
-   p1.get();
    return 0;
 }
