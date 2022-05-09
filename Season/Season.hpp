@@ -1,13 +1,17 @@
 #ifndef SEASON_SEASON_HPP
 #define SEASON_SEASON_HPP
 
-#include <string>
+#include <cstdlib>
 
 /**
  * @author Marengo Stéphane
  */
 class Season {
 public:
+   Season(const Season& other) = delete;
+
+   Season& operator=(const Season& other) = delete;
+
    static const Season Spring, Summer, Autumn, Winter;
 
    static std::size_t size();
