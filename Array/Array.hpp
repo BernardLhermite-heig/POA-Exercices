@@ -12,6 +12,8 @@ template<typename T>
 class Array {
 public:
    class Iterator {
+      friend class Array;
+
    public:
       T& operator*() const;
 

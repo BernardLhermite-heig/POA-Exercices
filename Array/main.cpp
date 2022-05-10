@@ -45,7 +45,7 @@ int main() {
    a4 = a3;
 
    cout << array << endl
-        << a2 << endl
+        << *a2 << endl
         << a3 << endl
         << a4 << endl;
 
