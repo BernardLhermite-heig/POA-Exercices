@@ -1,6 +1,6 @@
 # Project exclude paths
-/cmake-build-debug/
-/cmake-build-debug-wsl/
+/**/cmake-build-debug/
+/**/cmake-build-debug-wsl/
 
 ### C++ template
 # Compiled Object files
