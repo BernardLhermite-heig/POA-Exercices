@@ -1,8 +1,9 @@
-import java.io.IOException;
+import data.Pays;
+
 import java.util.Arrays;
 
-public class Chap2Ex1 {
-    public static void main(String[] args) throws IOException {
+public class Unit2ExA {
+    public static void main(String[] args) {
         var words = Pays.get();
         // Code custom ici
         Arrays.sort(words, (a, b) -> b.length() - a.length());

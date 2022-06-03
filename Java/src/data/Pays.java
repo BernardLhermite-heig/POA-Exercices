@@ -1,3 +1,8 @@
+package data;
+
+import java.util.Arrays;
+import java.util.List;
+
 public class Pays {
     public static String[] get() {
         return new String[]{
@@ -199,5 +204,9 @@ public class Pays {
                 "Nauru",
                 "Vatican"
         };
+    }
+
+    public static List<String> getList() {
+        return Arrays.asList(get());
     }
 }
