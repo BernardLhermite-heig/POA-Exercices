@@ -6,7 +6,6 @@ import oui2.company.*;
 
 import java.util.*;
 import java.util.function.Function;
-import java.util.function.ToIntFunction;
 import java.util.stream.Collectors;
 
 public class TE2 {
@@ -85,13 +84,14 @@ public class TE2 {
 
     private static <T, U> double averageOf(List<T> collection,
                                            Function<T, List<U>> listMapper,
-                                           ToIntFunction<U> valueMapper) {
+            /*ToIntFunction<U>*/Function<U, Integer> valueMapper) {
         double avg = 0;
         int counter = 0;
 
         for (T list : collection) {
             for (U e : listMapper.apply(list)) {
-                avg += valueMapper.applyAsInt(e);
+//                avg += valueMapper.applyAsInt(e);
+                avg += valueMapper.apply(e);
                 ++counter;
             }
         }
